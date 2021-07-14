@@ -1,4 +1,4 @@
 require('dotenv').config();
 
-const startApplication = require('./app/index');
+const startApplication = require('./app');
 startApplication();
