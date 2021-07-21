@@ -17,6 +17,7 @@
     "@routes": "app/routes",
     "@services": "app/services",
     "@middlewares": "app/middlewares",
+    "@validators": "app/validators",
     "@database": "database"
   },
   "dependencies": {
