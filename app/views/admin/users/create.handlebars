@@ -3,7 +3,7 @@
   <!-- Page Heading Start -->
   <div class="col-12 col-lg-auto mb-20">
     <div class="page-heading">
-      <h3 class="title">مطالب <span>/ درج مطلب جدید</span></h3>
+      <h3 class="title">کاربران <span>/ ایجاد کاربر جدید</span></h3>
     </div>
   </div>
   <!-- Page Heading End -->
@@ -18,11 +18,11 @@
     <div class="box">
       <div class="box-head">
         <div class="row">
-          <h4 class="title">اطلاعات مطلب</h4>
+          <h4 class="title">فرم ایجاد کاربر</h4>
         </div>
       </div>
       <div class="box-body">
-        <form action="/admin/posts/store" method="POST">
+        <form action="/admin/users/store" method="POST">
           <div class="row mbn-20">
             <div class="col-12 mb-20">
               {{#if hasError}}
@@ -35,62 +35,51 @@
             </div>
             <div class="col-12 mb-20">
               <input
-                name="title"
+                name="full_name"
                 type="text"
                 id="formLayoutUsername3"
                 class="form-control"
-                placeholder="عنوان مطلب"
+                placeholder="نام کاربر"
               />
             </div>
             <div class="col-12 mb-20">
               <input
-                name="slug"
+                name="email"
                 type="email"
                 id="formLayoutEmail3"
                 class="form-control"
-                placeholder="نامک مطلب"
+                placeholder="ایمیل کاربر"
               />
             </div>
             <div class="col-12 mb-20">
-              <textarea
-                name="content"
-                id="formLayoutMessage1"
+              <input
+                name="password"
+                type="password"
+                id="formLayoutEmail3"
                 class="form-control"
-                placeholder="محتوای مطلب"
-              ></textarea>
-            </div>
-
-            <div class="col-12 mb-15">
-              <select
-                name="author"
-                class="form-control"
-                placeholder="نام نویسنده"
-              >
-                {{#each users}}
-                  <option value="{{this.id}}">{{this.full_name}}</option>
-                {{/each}}
-              </select>
+                placeholder="کلمه عبور"
+              />
             </div>
 
             <div class="col-12 mb-20">
-              <h6 class="mb-15">وضعیت مطلب</h6>
+              <h6 class="mb-15">نقش کاربری</h6>
               <div class="form-group">
                 <label class="inline"><input
-                    name="status"
+                    name="role"
                     type="radio"
                     value="0"
                     checked
-                  />پیش نویس</label>
+                  />کاربر</label>
                 <label class="inline"><input
-                    name="status"
+                    name="role"
                     type="radio"
                     value="1"
-                  />در حال بازبینی</label>
+                  />نویسنده</label>
                 <label class="inline"><input
-                    name="status"
+                    name="role"
                     type="radio"
                     value="2"
-                  />منتشر شده</label>
+                  />مدیر</label>
               </div>
             </div>
 

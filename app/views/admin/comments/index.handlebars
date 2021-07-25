@@ -1,0 +1,78 @@
+<!-- Page Headings Start -->
+<div class="row justify-content-between align-items-center mb-10">
+  <!-- Page Heading Start -->
+  <div class="col-12 col-lg-auto mb-20">
+    <div class="page-heading">
+      <h3>دیدگاه‌ها</h3>
+    </div>
+  </div>
+  <!-- Page Heading End -->
+</div>
+<!-- Page Headings End -->
+
+<div class="row mbn-30">
+  <!-- Revenue Statistics Chart Start -->
+  <div class="col-md-12 mb-30">
+    <div class="box">
+      <div class="box-head">
+        <div class="row">
+          <h4 class="title">لیست دیدگاه‌های بلاگ</h4>
+        </div>
+      </div>
+      <div class="box-body">
+        <table class="table table-vertical-middle table-selectable">
+          <!-- Table Head Start -->
+          <thead>
+            <tr>
+              <th>نویسنده</th>
+              <th>دیدگاه</th>
+              <th>در پاسخ به</th>
+              <th>ارسال شده</th>
+            </tr>
+          </thead>
+          <!-- Table Head End -->
+
+          <!-- Table Body Start -->
+          <tbody>
+            {{#each comments}}
+              <tbody class="{{commentBackground this.status}}">
+                <tr>
+                  <td><img
+                      src="{{this.userAvatar}}"
+                      alt=""
+                      class="table-product-image rounded-circle"
+                    />
+                    &nbsp;&nbsp;{{this.user_name}}</td>
+                  <td>{{this.comment}}</td>
+                  <td>{{this.title}}</td>
+                  <td>{{this.jalali_created_at}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      href="/admin/comments/approve/{{this.id}}"
+                      class="button button-success"
+                    ><span>تایید</span></a>
+                    <a
+                      href="/admin/comments/reject/{{this.id}}"
+                      class="button button-warning"
+                    ><span>رد</span></a>
+                    <a
+                      href="/admin/comments/delete/{{this.id}}"
+                      class="button button-danger"
+                    ><span>حذف</span></a>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            {{/each}}
+          </tbody>
+          <!-- Table Body End -->
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Revenue Statistics Chart End -->
+</div>

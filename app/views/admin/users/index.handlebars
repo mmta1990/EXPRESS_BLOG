@@ -3,7 +3,7 @@
   <!-- Page Heading Start -->
   <div class="col-12 col-lg-auto mb-20">
     <div class="page-heading">
-      <h3>مطالب</h3>
+      <h3>کاربران</h3>
     </div>
     {{#if success}}
       <div
@@ -20,8 +20,8 @@
   <!-- Page Button Group Start -->
   <div class="col-12 col-lg-auto mb-20">
     <div class="buttons-group">
-      <a href="/admin/posts/create" class="button button-primary">
-        <span><i class="zmdi zmdi-plus"></i>مطلب جدید</span>
+      <a href="/admin/users/create" class="button button-primary">
+        <span><i class="zmdi zmdi-plus"></i>ایجاد کاربر جدید</span>
       </a>
     </div>
   </div>
@@ -35,7 +35,7 @@
     <div class="box">
       <div class="box-head">
         <div class="row">
-          <h4 class="title">لیست مطالب بلاگ</h4>
+          <h4 class="title">لیست کاربران</h4>
         </div>
       </div>
       <div class="box-body">
@@ -44,10 +44,9 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>عنوان</th>
-              <th>نویسنده</th>
+              <th>نام</th>
+              <th>ایمیل</th>
               <th>تاریخ ایجاد</th>
-              <th>تعداد بازدید</th>
               <th>عملیات</th>
             </tr>
           </thead>
@@ -55,22 +54,21 @@
 
           <!-- Table Body Start -->
           <tbody>
-            {{#each posts}}
+            {{#each users}}
               <tr>
                 <td>{{this.id}}</td>
-                <td><a href="###">{{this.title}}</a></td>
                 <td>{{this.full_name}}</td>
+                <td>{{this.email}}</td>
                 <td>{{this.jalali_created_at}}</td>
-                <td>{{this.persian_views}}</td>
                 <td>
                   <div class="table-action-buttons">
                     <a
                       class="edit button button-box button-xs button-info"
-                      href="/admin/posts/edit/{{this.id}}"
+                      href="/admin/users/edit/{{this.id}}"
                     ><i class="zmdi zmdi-edit"></i></a>
                     <a
                       class="delete button button-box button-xs button-danger"
-                      href="/admin/posts/delete/{{this.id}}"
+                      href="/admin/users/delete/{{this.id}}"
                     ><i class="zmdi zmdi-delete"></i></a>
                   </div>
                 </td>

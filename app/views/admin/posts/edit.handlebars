@@ -69,7 +69,10 @@
                 placeholder="نام نویسنده"
               >
                 {{#each users}}
-                  <option value="{{this.id}}">{{this.full_name}}</option>
+                  <option value="{{this.id}}"
+                  {{#isPostAuthor this.id}}selected{{/isPostAuthor}}>
+                    {{this.full_name}}
+                  </option>
                 {{/each}}
               </select>
             </div>
@@ -81,18 +84,28 @@
                     name="status"
                     type="radio"
                     value="0"
+                    {{#isSelectedStatus 0}}checked{{/isSelectedStatus}}
+                    {{!-- value="{{postStatuses.DRAFT}}"
+                    {{#isSelectedStatus postStatuses.DRAFT}}checked{{/isSelectedStatus}} --}}
                   />پیش نویس</label>
-                <label class="inline"><input
-                    name="status"
-                    type="radio"
-                    value="2"
-                  />منتشرشده</label>
+
                 <label class="inline"><input
                     name="status"
                     type="radio"
                     value="1"
-                    checked
+                    {{#isSelectedStatus 1}}checked{{/isSelectedStatus}}
+                    {{!-- value="{{postStatuses.REVIEW}}"
+                    {{#isSelectedStatus postStatuses.REVIEW}}checked{{/isSelectedStatus}} --}}
                   />در حال بازبینی</label>
+
+                <label class="inline"><input
+                    name="status"
+                    type="radio"
+                    value="2"
+                    {{#isSelectedStatus 2}}checked{{/isSelectedStatus}}
+                    {{!-- value="{{postStatuses.PUBLISHED}}"
+                    {{#isSelectedStatus postStatuses.PUBLISHED}}checked{{/isSelectedStatus}} --}}
+                  />منتشرشده</label>
               </div>
             </div>
 
