@@ -7,6 +7,17 @@ exports.findAll = async (columns = []) => {
   return rows;
 };
 
+exports.findByEmail = async (email) => {
+  const [rows] = await db.query(
+    `
+  SELECT * FROM users
+  WHERE email = ? LIMIT 1
+  `,
+    [email]
+  );
+  return rows.length === 1 ? rows[0] : null;
+};
+
 exports.find = async (userID) => {
   const [rows, fields] = await db.query(
     `

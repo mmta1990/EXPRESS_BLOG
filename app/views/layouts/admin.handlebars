@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>آدومکس - قالب مدیریتی ریسپانسیو بوت استرپ 4</title>
+    <title>EXPRESS_BLOG</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="" />
     <meta
@@ -116,24 +116,20 @@
                       <a class="toggle" href="#">
                         <span class="user">
                           <span class="avatar">
-                            <img
-                              src="/static/assets/images/avatar/avatar-1.jpg"
-                              alt=""
-                            />
+                            <img src="{{user.avatar}}" alt="" />
                             <span class="status"></span>
                           </span>
-                          <span class="name">میلاد تقی پور</span>
+                          <span class="name">{{user.full_name}}</span>
                         </span>
                       </a>
 
                       <!-- Dropdown -->
                       <div class="adomx-dropdown-menu dropdown-menu-user">
                         <div class="head">
-                          <h5 class="name"><a href="#">میلاد تقی پور</a></h5>
-                          <a
-                            class="mail"
-                            href="#"
-                          >miladtaghipour1369@gmail.com</a>
+                          <h5 class="name"><a
+                              href="#"
+                            >{{user.full_name}}</a></h5>
+                          <a class="mail" href="#">{{user.email}}</a>
                         </div>
                         <div class="body">
                           <ul>
@@ -141,16 +137,6 @@
                               <a href="#"><i
                                   class="zmdi zmdi-account"
                                 ></i>پروفایل</a>
-                            </li>
-                            <li>
-                              <a href="#"><i
-                                  class="zmdi zmdi-email-open"
-                                ></i>صندوق ورودی</a>
-                            </li>
-                            <li>
-                              <a href="#"><i
-                                  class="zmdi zmdi-wallpaper"
-                                ></i>فعالیت</a>
                             </li>
                           </ul>
                           <ul>
@@ -160,20 +146,9 @@
                                 ></i>تنظیمات</a>
                             </li>
                             <li>
-                              <a href="#"><i
+                              <a href="/logout"><i
                                   class="zmdi zmdi-lock-open"
                                 ></i>خروج</a>
-                            </li>
-                          </ul>
-                          <ul>
-                            <li>
-                              <a href="#"><i class="zmdi zmdi-paypal"></i>پرداخت
-                                ها</a>
-                            </li>
-                            <li>
-                              <a href="#"><i
-                                  class="zmdi zmdi-google-pages"
-                                ></i>صورتحساب</a>
                             </li>
                           </ul>
                         </div>
@@ -237,7 +212,11 @@
       <div class="footer-section">
         <div class="container-fluid">
           <div class="footer-copyright text-center">
-            <p class="text-body-light">1399 &copy;</p>
+            <p class="text-body-light">ساخته شده با
+              <span style="color: red;">&hearts;</span>
+              و
+              <span>&#9749</span>
+            </p>
           </div>
         </div>
       </div>

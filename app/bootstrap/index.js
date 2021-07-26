@@ -4,6 +4,8 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const connectFlash = require("connect-flash");
+const sessionStore = require("./session-handlers/mysql")(session); //for MYSQL Sessions
+// const sessionStore = require("./session-handlers/redis")(session); //for Redis Sessions
 
 module.exports = (app) => {
   app.use(express.json());
@@ -11,10 +13,12 @@ module.exports = (app) => {
   app.use(cookieParser());
   app.use(
     session({
+      store: sessionStore,
       secret: "1234567890abcdefghij!@#$%^&*()",
       resave: true,
       saveUninitialized: true,
-      cookie: { maxAge: 60000 },
+      cookie: { maxAge: 600000 },
+      unset: "destroy",
     })
   );
   app.use(connectFlash());
