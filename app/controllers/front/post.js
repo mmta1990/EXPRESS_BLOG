@@ -1,6 +1,7 @@
 const postModel = require("@models/post");
 const userModel = require("@models/user");
 const commentModel = require("@models/comment");
+const settingModel = require("@models/setting");
 const userService = require("@services/userService");
 const postPresenter = require("@presenters/post");
 const _ = require("lodash");
@@ -29,13 +30,16 @@ exports.showPost = async (req, res) => {
     comment.jalali_date = commentPresenterInstance.jalaliCreatedAt();
     return comment;
   });
+
   const newComments = _.groupBy(presentedComments, "parent");
+  let pageTitle = await settingModel.get("website_title");
 
   res.frontRender("front/post/single.handlebars", {
     post,
     posts: postsForPresent,
     comments: newComments[0],
     bodyClass: "single-post",
+    title: `${pageTitle} || ${post.title}`,
     helpers: {
       hasChildren: function (commentID, options) {
         return commentID in newComments;

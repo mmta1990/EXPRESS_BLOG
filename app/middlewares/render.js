@@ -1,7 +1,8 @@
 const { gravatar } = require("@services/userService");
+const settingModel = require("@models/setting");
 
 module.exports = (app) => {
-  app.use((req, res, next) => {
+  app.use(async (req, res, next) => {
     const errors = req.flash("errors");
     const success = req.flash("success");
     const hasError = errors.length > 0;
@@ -29,10 +30,15 @@ module.exports = (app) => {
       res.render(template, options);
     };
 
+    const title = await settingModel.get("website_title");
+    const description = await settingModel.get("website_description");
+
     res.frontRender = (template, options) => {
       options = {
         layout: "front",
         bodyClass: "bg-gray",
+        title,
+        description,
         ...options,
         hasError,
         errors,

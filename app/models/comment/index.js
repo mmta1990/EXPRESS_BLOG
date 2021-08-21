@@ -1,14 +1,23 @@
 const db = require("@database/mysql");
 const commentStatus = require("./commentStatus");
 
-exports.findAll = async () => {
+exports.findAll = async (page = 1, perpage = 5) => {
+  const offset = (page - 1) * perpage;
   const [rows, fields] = await db.query(`
         SELECT c.*, p.title
         FROM comments c
         JOIN posts p ON c.post_id = p.id
         ORDER BY c.created_at DESC
+        LIMIT ${offset}, ${perpage}
     `);
   return rows;
+};
+
+exports.count = async () => {
+  const [rows, fields] = await db.query(`
+        SELECT COUNT(id) as commentsCount FROM comments
+    `);
+  return rows[0].commentsCount;
 };
 
 exports.find = async (postID) => {

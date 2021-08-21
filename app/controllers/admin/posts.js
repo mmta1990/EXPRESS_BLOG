@@ -6,7 +6,20 @@ const postValidators = require("@validators/post");
 const { statuses } = require("@models/post/postStatus");
 
 exports.index = async (req, res) => {
-  const posts = await postModel.findAll();
+  const page = "page" in req.query ? parseInt(req.query.page) : 1;
+  const perPage = 10;
+  const posts = await postModel.findAll(page, perPage);
+  const totalPosts = await postModel.count();
+  const totalPages = Math.ceil(totalPosts / perPage);
+  const pagination = {
+    page,
+    totalPages,
+    nextPage: page < totalPages ? page + 1 : totalPages,
+    prevPage: page > 1 ? page - 1 : 1,
+    hasNextPage: page < totalPages,
+    hasPrevPage: page > 1,
+  };
+
   const presentedPosts = posts.map((post) => {
     post.jalali_created_at = langService.toPersianNumbers(
       dateService.toPersiandate(post.created_at)
@@ -14,8 +27,15 @@ exports.index = async (req, res) => {
     post.persian_views = langService.toPersianNumbers(post.views);
     return post;
   });
+
   res.adminRender("admin/posts/index.handlebars", {
     posts: presentedPosts,
+    pagination,
+    helpers: {
+      showDisabled: function (isDisabled, options) {
+        return !isDisabled ? "disabled" : "";
+      },
+    },
   });
 };
 

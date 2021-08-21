@@ -1,6 +1,6 @@
 const db = require("@database/mysql");
 
-exports.findAll = async (page = 1, perpage = 5) => {
+exports.findAll = async (page = 1, perpage = 10) => {
   const offset = (page - 1) * perpage;
   const [rows, fields] = await db.query(`
         SELECT p.*, u.full_name

@@ -5,7 +5,20 @@ const dateService = require("@services/dateService");
 const langService = require("@services/langService");
 
 exports.index = async (req, res) => {
-  const comments = await commentModel.findAll();
+  const page = "page" in req.query ? parseInt(req.query.page) : 1;
+  const perPage = 5;
+  const comments = await commentModel.findAll(page, perPage);
+  const totalcomments = await commentModel.count();
+  const totalPages = Math.ceil(totalcomments / perPage);
+  const pagination = {
+    page,
+    totalPages,
+    nextPage: page < totalPages ? page + 1 : totalPages,
+    prevPage: page > 1 ? page - 1 : 1,
+    hasNextPage: page < totalPages,
+    hasPrevPage: page > 1,
+  };
+
   const presentedComments = comments.map((comment) => {
     comment.userAvatar = gravatar(comment.user_email);
     comment.jalali_created_at = langService.toPersianNumbers(
@@ -16,6 +29,7 @@ exports.index = async (req, res) => {
 
   res.adminRender("admin/comments/index.handlebars", {
     comments: presentedComments,
+    pagination,
     helpers: {
       commentBackground: function (status, options) {
         let cssClass = "alert ";
@@ -31,6 +45,9 @@ exports.index = async (req, res) => {
             break;
         }
         return cssClass;
+      },
+      showDisabled: function (isDisabled, options) {
+        return !isDisabled ? "disabled" : "";
       },
     },
   });
