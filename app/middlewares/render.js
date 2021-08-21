@@ -28,6 +28,19 @@ module.exports = (app) => {
       options = { ...options, layout: "auth", hasError, errors, success, user };
       res.render(template, options);
     };
+
+    res.frontRender = (template, options) => {
+      options = {
+        layout: "front",
+        bodyClass: "bg-gray",
+        ...options,
+        hasError,
+        errors,
+        success,
+        user,
+      };
+      res.render(template, options);
+    };
     next();
   });
 };
