@@ -17,3 +17,5 @@ exports.roles = () => {
 exports.readableRoles = (role = null) => {
   return role ? rolesAsText[role] : rolesAsText;
 };
+
+// Final Edition

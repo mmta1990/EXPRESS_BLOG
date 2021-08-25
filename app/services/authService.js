@@ -24,3 +24,5 @@ exports.register = async (email, password) => {
   }
   return insertID;
 };
+
+// Final Edition

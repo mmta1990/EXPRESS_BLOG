@@ -31,3 +31,5 @@ exports.get = async (key) => {
   );
   return rows.length > 0 ? rows[0].setting_value : null;
 };
+
+// Final Edition

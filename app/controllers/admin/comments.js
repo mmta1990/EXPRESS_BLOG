@@ -70,3 +70,5 @@ exports.delete = async (req, res) => {
   const result = await commentModel.delete(commentID);
   return res.redirect("/admin/comments");
 };
+
+// Final Edition

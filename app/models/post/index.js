@@ -58,3 +58,32 @@ exports.findBySlug = async (postSlug) => {
   ]);
   return rows[0];
 };
+
+exports.findByKeyword = async (keyword) => {
+  const [rows, fields] = await db.query(
+    `
+  SELECT p.*, u.full_name
+  FROM posts p
+  JOIN users u ON p.author_id = u.id
+  WHERE p.title LIKE ?
+  ORDER BY p.created_at DESC
+`,
+    ["%" + keyword + "%"]
+  );
+  return rows;
+};
+
+exports.latestPosts = async (limit = 10) => {
+  const [rows, fields] = await db.query(
+    `
+  SELECT p.*, u.full_name
+  FROM posts p
+  JOIN users u ON p.author_id = u.id
+  ORDER BY p.created_at DESC
+  LIMIT ${limit}
+`
+  );
+  return rows;
+};
+
+// Final Edition

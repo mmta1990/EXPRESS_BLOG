@@ -11,3 +11,5 @@ module.exports = (session) => {
   };
   return new MySQLStore(mysqlOptions);
 };
+
+// Final Edition

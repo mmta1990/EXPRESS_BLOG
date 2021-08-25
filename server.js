@@ -1,5 +1,7 @@
-require('dotenv').config();
-require('module-alias/register');
+require("dotenv").config();
+require("module-alias/register");
 
-const startApplication = require('./app');
+const startApplication = require("./app");
 startApplication();
+
+// Final Edition

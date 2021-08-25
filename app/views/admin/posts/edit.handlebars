@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="box-body">
-        <form action="/admin/posts/update/{{post.id}}" method="POST">
+        <form action="/admin/posts/update/{{post.id}}" method="POST" enctype="multipart/form-data">
           <div class="row mbn-20">
             <div class="col-12 mb-20">
               {{#if hasError}}
@@ -55,11 +55,21 @@
             </div>
             <div class="col-12 mb-20">
               <textarea
+                id="content"
                 name="content"
-                id="formLayoutMessage1"
                 class="form-control"
                 placeholder="محتوای مطلب"
               >{{post.content}}</textarea>
+            </div>
+
+            <div class="col-12 mb-15">
+              <label for="thumbnail">تصویر شاخص</label>
+              <input
+                type="file"
+                id="thumbnail"
+                name="thumbnail"
+                class="form-control"
+              />
             </div>
 
             <div class="col-12 mb-15">
@@ -125,3 +135,5 @@
   </div>
   <!-- Revenue Statistics Chart End -->
 </div>
+
+{{!-- Final Edition --}}

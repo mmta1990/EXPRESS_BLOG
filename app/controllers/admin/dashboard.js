@@ -9,3 +9,5 @@ exports.index = async (req, res) => {
   };
   res.adminRender("admin/dashboard/index.handlebars", { ...data });
 };
+
+// Final Edition

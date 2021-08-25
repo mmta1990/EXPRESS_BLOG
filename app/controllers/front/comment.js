@@ -18,3 +18,5 @@ exports.store = async (req, res) => {
   const result = await commentModel.create(commentData);
   res.redirect(`/p/${post.slug}`);
 };
+
+// Final Edition

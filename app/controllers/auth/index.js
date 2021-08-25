@@ -38,3 +38,5 @@ exports.logout = async (req, res) => {
     res.redirect("/auth/login");
   });
 };
+
+// Final Edition

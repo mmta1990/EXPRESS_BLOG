@@ -6,3 +6,5 @@ module.exports = (session) => {
   let redisClient = redis.createClient();
   return new RedisStore({ client: redisClient });
 };
+
+// Final Edition

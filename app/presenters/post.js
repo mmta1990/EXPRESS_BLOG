@@ -20,3 +20,5 @@ class PostPresenter {
 }
 
 module.exports = PostPresenter;
+
+// Final Edition

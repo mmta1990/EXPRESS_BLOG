@@ -13,3 +13,5 @@ module.exports = (app) => {
   app.use("/auth", [guest], authRouter);
   app.get("/logout", authController.logout);
 };
+
+// Final Edition

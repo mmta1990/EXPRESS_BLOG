@@ -3,3 +3,5 @@ module.exports = {
   REJECTED: 1,
   APPROVED: 2,
 };
+
+// Final Edition

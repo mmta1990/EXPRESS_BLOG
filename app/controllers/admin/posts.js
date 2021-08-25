@@ -4,6 +4,7 @@ const dateService = require("@services/dateService");
 const langService = require("@services/langService");
 const postValidators = require("@validators/post");
 const { statuses } = require("@models/post/postStatus");
+const { v4: uuidv4 } = require("uuid");
 
 exports.index = async (req, res) => {
   const page = "page" in req.query ? parseInt(req.query.page) : 1;
@@ -45,12 +46,15 @@ exports.create = async (req, res) => {
 };
 
 exports.store = async (req, res) => {
+  const fileExt = req.files.thumbnail.name.split(".")[1];
+  const newFileName = `${uuidv4()}.${fileExt}`;
   const postData = {
     author_id: req.body.author,
     title: req.body.title,
     slug: req.body.slug,
     content: req.body.content,
     status: req.body.status,
+    thumbnail: newFileName,
   };
   const errors = postValidators.create(postData);
   if (errors.length > 0) {
@@ -58,6 +62,15 @@ exports.store = async (req, res) => {
     return res.redirect("/admin/posts/create");
   }
   const insertID = await postModel.create(postData);
+  if (req.files.thumbnail) {
+    if (!process.env.PWD) {
+      process.env.PWD = process.cwd();
+      const fileNewPath = `${process.env.PWD}/public/upload/thumbnails/${newFileName}`;
+      req.files.thumbnail.mv(fileNewPath, (err) => {
+        console.log(err);
+      });
+    }
+  }
   req.flash("success", "مطلب جدید با موفقیت ایجاد شد");
   res.redirect("/admin/posts");
 };
@@ -114,3 +127,5 @@ exports.update = async (req, res) => {
   req.flash("success", "مطلب با موفقیت ویرایش شد");
   return res.redirect("/admin/posts");
 };
+
+// Final Edition

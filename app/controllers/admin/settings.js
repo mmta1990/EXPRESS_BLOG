@@ -41,3 +41,5 @@ exports.store = async (req, res) => {
   req.flash("success", "تنظیمات با موفقیت ویرایش شد");
   res.redirect("/admin/settings");
 };
+
+// Final Edition

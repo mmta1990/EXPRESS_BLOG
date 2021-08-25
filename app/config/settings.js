@@ -6,3 +6,5 @@ module.exports = {
   users_can_submit_comment: "0",
   users_can_register: "0",
 };
+
+// Final Edition

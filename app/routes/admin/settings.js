@@ -6,3 +6,5 @@ router.get("/", settingsController.index);
 router.post("/", settingsController.store);
 
 module.exports = router;
+
+// Final Edition

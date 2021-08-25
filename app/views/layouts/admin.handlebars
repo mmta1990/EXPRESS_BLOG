@@ -52,6 +52,7 @@
       rel="stylesheet"
       href="/static/assets/css/style-primary.css"
     />
+
   </head>
 
   <body dir="rtl">
@@ -267,5 +268,21 @@
       src="/static/assets/js/plugins/vmap/maps/samples/jquery.vmap.sampledata.js"
     ></script>
     <script src="/static/assets/js/plugins/vmap/vmap.active.js"></script>
+
+    <script
+      type="text/javascript"
+      src="/static/assets/ckeditor/ckeditor.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/static/assets/ckeditor/ckeditorPlugin.js"
+    ></script>
+    <script type="text/javascript">
+      ClassicEditor .create( document.querySelector( '#content' ), {language: {
+      ui: 'fa', content: 'fa' }} );
+    </script>
+
   </body>
 </html>
+
+{{! Final Edition }}

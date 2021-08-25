@@ -24,9 +24,11 @@ exports.index = async (req, res) => {
     return post;
   });
 
+  const latestPosts = await postModel.latestPosts(3);
   res.frontRender("front/home/index.handlebars", {
     posts: postsForPresent,
     pagination,
+    latestPosts,
     helpers: {
       showDisabled: function (isDisabled, options) {
         return !isDisabled ? "disabled" : "";
@@ -34,3 +36,20 @@ exports.index = async (req, res) => {
     },
   });
 };
+
+exports.search = async (req, res) => {
+  const posts = await postModel.findByKeyword(req.query.keyword);
+
+  const postsForPresent = posts.map((post) => {
+    const postPresenterInstance = new postPresenter(post);
+    post.jalali_date = postPresenterInstance.jalaliCreatedAt();
+    post.excerpt = postPresenterInstance.excerpt();
+    return post;
+  });
+
+  res.frontRender("front/home/search.handlebars", {
+    posts: postsForPresent,
+  });
+};
+
+// Final Edition

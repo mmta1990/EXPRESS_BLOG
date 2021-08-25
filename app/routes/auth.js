@@ -8,3 +8,5 @@ router.get("/register", authController.showRegister);
 router.post("/register", authController.doRegister);
 
 module.exports = router;
+
+// Final Edition
